@@ -45,7 +45,7 @@ jobs:
           echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
       - name: Install gcc and cmake
         run: |
-          apt install build-essential gcc cmake -y
+          sudo apt install build-essential gcc cmake -y
       - name: Run build-wrapper
         run: |
           mkdir build
