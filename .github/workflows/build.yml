@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: gcc:latest
+    runs-on: ubuntu-22.04
     env:
       SONAR_SCANNER_VERSION: 4.6.1.2450 # Find the latest version in the "Linux" link on this page:
                                         # https://docs.sonarcloud.io/advanced-setup/ci-based-analysis/sonarscanner-cli/
@@ -43,6 +43,9 @@ jobs:
           curl -sSLo $HOME/.sonar/build-wrapper-linux-x86.zip ${{ env.BUILD_WRAPPER_DOWNLOAD_URL }}
           unzip -o $HOME/.sonar/build-wrapper-linux-x86.zip -d $HOME/.sonar/
           echo "$HOME/.sonar/build-wrapper-linux-x86" >> $GITHUB_PATH
+      - name: Install gcc and cmake
+        run: |
+          apt install build-essential gcc cmake -y
       - name: Run build-wrapper
         run: |
           mkdir build
